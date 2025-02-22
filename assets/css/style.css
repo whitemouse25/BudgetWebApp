@@ -243,7 +243,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: 0.3s ease, transform 0.2s ease;
   }
   
   .btn-primary:hover {
@@ -252,8 +252,8 @@
   }
   
   .btn-secondary {
-    background: var(--surface-100);
-    color: var(--surface-700);
+    background: var(--primary);
+    color: var(--surface-100);
     border: 1px solid var(--surface-200);
     padding: 10px;
     border-radius: var(--radius-md);

@@ -1,7 +1,7 @@
 import { db, auth } from "./firebase.js";
 import { signOut } from "firebase/auth";
 import { doc, getDoc, getDocs, addDoc, updateDoc, collection, query, where, deleteDoc } from "firebase/firestore";
-import QRCode from 'qrcode';
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 auth.onAuthStateChanged(async (user) => {
   if (user) {
@@ -214,3 +214,16 @@ function showToast(message, type = "success") {
   document.getElementById("toastContainer").appendChild(toast);
   setTimeout(() => toast.remove(), 3000);
 }
+//QR code functionality
+document.getElementById("generateQRCodeBtn").addEventListener("click", function () {
+  const qrContainer = document.getElementById("qrcode");
+  qrContainer.innerHTML = ""; // Clear previous QR code
+
+  new QRCode(qrContainer, {
+      text: "https://whitemouse25.github.io/budget-web-app/", // Replace with dynamic content if needed
+      width: 128,
+      height: 128
+  });
+
+  qrContainer.style.display = "block"; // Show QR code
+});
