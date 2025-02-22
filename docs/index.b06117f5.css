@@ -551,4 +551,25 @@ header {
 #closeChatbot {
   padding: 5px;
 }
+
+#biometricAuthBtn {
+  background: var(--primary);
+  color: #fff;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  align-items: center;
+  gap: var(--spacing-2);
+  text-transform: capitalize;
+  border: none;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: all .3s, transform .2s;
+  display: inline-flex;
+}
+
+#biometricAuthBtn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
 /*# sourceMappingURL=index.b06117f5.css.map */
