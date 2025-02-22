@@ -600,83 +600,78 @@ var _firebaseJs = require("./firebase.js");
 var _auth = require("firebase/auth");
 var _firestore = require("firebase/firestore");
 var _generativeAi = require("@google/generative-ai");
+// Auth State Change
 (0, _firebaseJs.auth).onAuthStateChanged(async (user)=>{
     if (user) await loadTransactions();
 });
 // Elements
 const logoutBtn = document.getElementById("logoutBtn");
-// Chatbot Elements
-const chatbotModal = document.getElementById("chatbotModal");
-const closeChatbotBtn = document.getElementById("closeChatbot");
-const chatInput = document.getElementById("chatInput");
-const sendChatBtn = document.getElementById("sendChat");
-const chatbotMessages = document.getElementById("chatbotMessages");
+const biometricAuthBtn = document.getElementById("biometricAuthBtn");
+const generateQRCodeButton = document.getElementById("generateQRCodeBtn");
 // Transactions Elements
 const addTransactionBtn = document.getElementById("addTransactionBtn");
 const transactionModal = document.getElementById("transactionModal");
 const transactionForm = document.getElementById("transactionForm");
 const cancelBtn = document.getElementById("cancelBtn");
 const transactionsList = document.getElementById("transactionsList");
-const generateQRCodeButton = document.getElementById("generateQRCodeBtn");
-// Logout button
+// Chatbot Elements
+const chatbotModal = document.getElementById("chatbotModal");
+const closeChatbotBtn = document.getElementById("closeChatbot");
+const chatInput = document.getElementById("chatInput");
+const sendChatBtn = document.getElementById("sendChat");
+const chatbotMessages = document.getElementById("chatbotMessages");
+// Logout
 logoutBtn.addEventListener("click", ()=>{
     (0, _auth.signOut)((0, _firebaseJs.auth)).then(()=>{
         console.log("Signed out successfully!");
-        window.location.href = "index.html"; // Redirect to login page
+        window.location.href = "index.html";
     }).catch((error)=>{
         console.error("Error signing out:", error.message);
     });
 });
-// Generate QR code
-generateQRCodeButton.addEventListener('click', ()=>{
-    document.getElementById("qrcode").style.display = "block";
+// Generate QR Code
+generateQRCodeButton.addEventListener("click", function() {
+    const qrContainer = document.getElementById("qrcode");
+    qrContainer.innerHTML = "";
+    new QRCode(qrContainer, {
+        text: "https://whitemouse25.github.io/budget-web-app/",
+        width: 128,
+        height: 128
+    });
+    qrContainer.style.display = "block";
 });
-// Add Transaction Button
+// Add Transaction
 addTransactionBtn.addEventListener("click", ()=>{
     transactionModal.classList.add("active");
 });
-// Cancel Button
 cancelBtn.addEventListener("click", ()=>{
     transactionModal.classList.remove("active");
     transactionForm.reset();
 });
-// Function to load the transactions
+// Load Transactions
 async function loadTransactions() {
     const user = (0, _firebaseJs.auth).currentUser;
-    if (!user) {
-        console.log("No user is currently logged in.");
-        return;
-    }
+    if (!user) return;
     try {
-        console.log("Loading transactions for user:", user.uid);
         const snapshot = await (0, _firestore.getDocs)((0, _firestore.query)((0, _firestore.collection)((0, _firebaseJs.db), "transactions"), (0, _firestore.where)("userId", "==", user.uid)));
-        let totalIncome = 0;
-        let totalExpenses = 0;
-        transactionsList.innerHTML = "";
-        if (snapshot.empty) {
-            console.log("No transactions found for the user.");
-            transactionsList.innerHTML = "No transactions yet";
-            return;
-        }
+        let totalIncome = 0, totalExpenses = 0;
+        transactionsList.innerHTML = snapshot.empty ? "No transactions yet" : "";
         snapshot.forEach((docSnapshot)=>{
             const data = docSnapshot.data();
-            console.log("Transaction data:", data);
-            if (data.type === "income") totalIncome += Number.parseFloat(data.amount);
-            else totalExpenses += Number.parseFloat(data.amount);
+            if (data.type === "income") totalIncome += parseFloat(data.amount);
+            else totalExpenses += parseFloat(data.amount);
             const div = document.createElement("div");
             div.className = `transaction ${data.type}`;
-            div.innerHTML = `${data.description} ${data.type === "income" ? "+" : "-"}$${Number.parseFloat(data.amount).toFixed(2)}`;
+            div.innerHTML = `${data.description} ${data.type === "income" ? "+" : "-"}$${parseFloat(data.amount).toFixed(2)}`;
             const deleteBtn = document.createElement("button");
             deleteBtn.textContent = "Delete";
             deleteBtn.className = "delete-btn";
             deleteBtn.addEventListener("click", async ()=>{
                 try {
-                    // Deleting the transaction using the docSnapshot reference
                     await (0, _firestore.deleteDoc)((0, _firestore.doc)((0, _firebaseJs.db), "transactions", docSnapshot.id));
                     showToast("Transaction deleted successfully!");
-                    loadTransactions(); // Reload the transactions after deletion
+                    loadTransactions();
                 } catch (error) {
-                    console.error("Error deleting transaction:", error.message);
                     showToast("Error deleting transaction: " + error.message, "error");
                 }
             });
@@ -687,27 +682,18 @@ async function loadTransactions() {
         document.getElementById("totalIncome").textContent = `$${totalIncome.toFixed(2)}`;
         document.getElementById("totalExpenses").textContent = `$${totalExpenses.toFixed(2)}`;
     } catch (error) {
-        console.error("Error loading transactions:", error.message);
         showToast("Error loading transactions: " + error.message, "error");
     }
 }
-// Handle Add Transaction Form Submission
+// Add Transaction Form Submission
 transactionForm.addEventListener("submit", async (event)=>{
     event.preventDefault();
     const description = event.target.description.value;
     const amount = parseFloat(event.target.amount.value);
     const type = event.target.type.value;
     const user = (0, _firebaseJs.auth).currentUser;
-    if (!user) {
-        console.log("User not logged in.");
-        return;
-    }
-    if (!description || isNaN(amount) || !type) {
-        console.log("Invalid form data.");
-        return;
-    }
+    if (!user || !description || isNaN(amount) || !type) return;
     try {
-        // Add transaction to Firestore
         await (0, _firestore.addDoc)((0, _firestore.collection)((0, _firebaseJs.db), "transactions"), {
             description,
             amount,
@@ -715,18 +701,15 @@ transactionForm.addEventListener("submit", async (event)=>{
             userId: user.uid,
             createdAt: new Date()
         });
-        // Show success message and reload transactions
         showToast("Transaction added successfully!");
         loadTransactions();
-        // Close modal and reset form
         transactionModal.classList.remove("active");
         transactionForm.reset();
     } catch (error) {
-        console.error("Error adding transaction:", error.message);
         showToast("Error adding transaction: " + error.message, "error");
     }
 });
-// Chatbot Functionality
+// Chatbot
 document.getElementById("chatbotButton").addEventListener("click", ()=>{
     chatbotModal.classList.toggle("hidden");
 });
@@ -747,15 +730,14 @@ sendChatBtn.addEventListener("click", async ()=>{
 });
 async function callGeminiAI(message) {
     try {
-        const genAI = new (0, _generativeAi.GoogleGenerativeAI)("AIzaSyBhm6u2K38LIE47GCX-QHhecGuQ9N4-a_w");
+        const genAI = new (0, _generativeAi.GoogleGenerativeAI)("YOUR_API_KEY");
         const model = genAI.getGenerativeModel({
             model: "gemini-1.5-flash"
         });
         const result = await model.generateContent(message);
         return result.response.text();
     } catch (error) {
-        console.error("Error calling Gemini AI:", error);
-        return "Error: Unable to process your request. Please try again later.";
+        return "Error: Unable to process your request.";
     }
 }
 function displayMessage(sender, message) {
@@ -765,7 +747,7 @@ function displayMessage(sender, message) {
     chatbotMessages.appendChild(messageDiv);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
-// Toast Function
+// Toast Notification
 function showToast(message, type = "success") {
     const toast = document.createElement("div");
     toast.className = `toast ${type}`;
@@ -773,16 +755,28 @@ function showToast(message, type = "success") {
     document.getElementById("toastContainer").appendChild(toast);
     setTimeout(()=>toast.remove(), 3000);
 }
-//QR code functionality
-document.getElementById("generateQRCodeBtn").addEventListener("click", function() {
-    const qrContainer = document.getElementById("qrcode");
-    qrContainer.innerHTML = ""; // Clear previous QR code
-    new QRCode(qrContainer, {
-        text: "https://whitemouse25.github.io/budget-web-app/",
-        width: 128,
-        height: 128
-    });
-    qrContainer.style.display = "block"; // Show QR code
+// Biometric Authentication (WebAuthn)
+biometricAuthBtn.addEventListener("click", async ()=>{
+    if (!window.PublicKeyCredential) {
+        alert("WebAuthn not supported in this browser.");
+        return;
+    }
+    try {
+        const challenge = new Uint8Array(32);
+        window.crypto.getRandomValues(challenge);
+        const publicKeyOptions = {
+            challenge: challenge,
+            allowCredentials: [],
+            userVerification: "required"
+        };
+        const credential = await navigator.credentials.get({
+            publicKey: publicKeyOptions
+        });
+        if (credential) alert("Biometric Authentication Successful!");
+        else alert("Authentication Failed!");
+    } catch (error) {
+        alert("Biometric Authentication Failed!");
+    }
 });
 
 },{"./firebase.js":"38sjH","firebase/firestore":"8A4BC","firebase/auth":"79vzg","@google/generative-ai":"gKJrW"}],"gKJrW":[function(require,module,exports,__globalThis) {

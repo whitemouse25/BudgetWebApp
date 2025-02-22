@@ -579,3 +579,23 @@ Ai Chatbot Full Screen Functionality
     padding: 5px;
 
   }
+
+  #biometricAuthBtn {
+    margin-top: 10px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    transition: 0.3s ease, transform 0.2s ease;
+    text-transform: capitalize;
+  }
+  #biometricAuthBtn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
