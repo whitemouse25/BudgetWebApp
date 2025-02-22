@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0078D7">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0078D7" />
     <title>Budget Planner App</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="manifest" href="../../manifest.json">
-    <link rel="icon" type="image/x-icon" href="../icons/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQBH4X5R49"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-PQBH4X5R49"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-PQBH4X5R49');
-</script>
-<body>
+    gtag("config", "G-PQBH4X5R49");
+  </script>
+  <body>
     <!-- Main App -->
-    <div id="appContainer" class="app-container">
+    <main>
+      <div id="appContainer" class="app-container">
         <header>
           <h1>Budget Planner</h1>
-          <button id="logoutBtn" class="btn-secondary">Logout</button>
+          <button tid="logoutBtn" class="btn-secondary" tabindex="0">
+            Logout
+          </button>
         </header>
 
-        <main>
-          <div class="summary-cards">
-            <div class="card">
-              <h3>Total Balance</h3>
-              <p id="totalBalance">$0.00</p>
-            </div>
-            <div class="card">
-              <h3>Income</h3>
-              <p id="totalIncome">$0.00</p>
-            </div>
-            <div class="card">
-              <h3>Expenses</h3>
-              <p id="totalExpenses">$0.00</p>
-            </div>
+        <div class="summary-cards">
+          <div class="card">
+            <h3>Total Balance</h3>
+            <p id="totalBalance">$0.00</p>
           </div>
+          <div class="card">
+            <h3>Income</h3>
+            <p id="totalIncome">$0.00</p>
+          </div>
+          <div class="card">
+            <h3>Expenses</h3>
+            <p id="totalExpenses">$0.00</p>
+          </div>
+        </div>
 
-          <div class="transactions-section">
-            <div class="section-header">
-              <h2>Transactions</h2>
-              <button id="addTransactionBtn" class="btn-primary">
-                Add Transaction
-              </button>
-            </div>
-            <div id="transactionsList" class="transactions-list">
-              <!-- Transactions will be added here -->
-            </div>
+        <div class="transactions-section">
+          <div class="section-header">
+            <h2>Transactions</h2>
+            <button id="addTransactionBtn" class="btn-primary" tabindex="0">
+              Add Transaction
+            </button>
           </div>
-        </main>
+          <div id="transactionsList" class="transactions-list">
+            <!-- Transactions will be added here -->
+          </div>
+        </div>
       </div>
 
       <!-- Add Transaction Modal -->
@@ -64,24 +73,31 @@
           <form id="transactionForm">
             <div class="form-group">
               <label for="description">Description</label>
-              <input type="text" id="description" required />
+              <input type="text" id="description" required tabindex="0" />
             </div>
             <div class="form-group">
               <label for="amount">Amount</label>
-              <input type="number" id="amount" required />
+              <input type="number" id="amount" required tabindex="0" />
             </div>
             <div class="form-group">
               <label for="type">Type</label>
-              <select id="type" required>
+              <select id="type" required tabindex="0">
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
               </select>
             </div>
             <div class="form-actions">
-              <button type="button" id="cancelBtn" class="btn-secondary">
+              <button
+                type="button"
+                id="cancelBtn"
+                class="btn-secondary"
+                tabindex="0"
+              >
                 Cancel
               </button>
-              <button type="submit" class="btn-primary">Save</button>
+              <button type="submit" class="btn-primary" tabindex="0">
+                Save
+              </button>
             </div>
           </form>
         </div>
@@ -91,7 +107,12 @@
       <div id="toastContainer" class="toast-container"></div>
 
       <!-- Chatbot Button -->
-      <div id="chatbotButton" class="chatbot-button" aria-label="Open Chatbot">
+      <div
+        id="chatbotButton"
+        class="chatbot-button"
+        aria-label="Open Chatbot"
+        tabindex="0"
+      >
         <i class="fas fa-robot"></i>
       </div>
 
@@ -99,7 +120,12 @@
       <div id="chatbotModal" class="chatbot-modal hidden">
         <div class="chatbot-header">
           <h3>AI Chatbot</h3>
-          <button id="closeChatbot" class="btn-icon" aria-label="Close Chat">
+          <button
+            id="closeChatbot"
+            class="btn-icon"
+            aria-label="Close Chat"
+            tabindex="0"
+          >
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -110,16 +136,18 @@
             id="chatInput"
             placeholder="Ask me anything..."
             aria-label="Chat Input"
+            tabindex="0"
           />
-          <button id="sendChat" class="btn-primary">Send</button>
+          <button id="sendChat" class="btn-primary" tabindex="0">Send</button>
         </div>
       </div>
 
       <div class="qr-container">
-        <button id="generateQRCodeBtn">Generate QR Code</button>
+        <button id="generateQRCodeBtn" tabindex="0">Generate QR Code</button>
         <div id="qrcode" style="display: none"></div>
       </div>
     </main>
     <script type="module" src="../js/tasks.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </body>
 </html>
