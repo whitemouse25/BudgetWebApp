@@ -3,7 +3,7 @@ name: Deploy Vanilla JavaScript PWA Checklist App
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
