@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "parcel assets/html/*.html",
-    "build": "parcel build --dist-dir docs --public-url /https://github.com/whitemouse25/budget-web-app/ assets/html/*.html",
+    "build": "parcel build --dist-dir docs --public-url /budget-web-app/ assets/html/*.html",
     "dev:build": "parcel build --dist-dir docs --no-content-hash assets/html/*.html",
     "dev:run": "npm run dev:build && npm run dev:start",
     "dev:start": "parcel serve --dist-dir docs assets/html/*.html",
