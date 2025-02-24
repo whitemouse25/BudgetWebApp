@@ -601,7 +601,7 @@ var _auth = require("firebase/auth");
 const provider = new (0, _auth.GoogleAuthProvider)();
 const sw = new URL(require("9f41ac59bb29f729"));
 if ('serviceWorker' in navigator) navigator.serviceWorker.register(sw.href, {
-    scope: '/CheckList/'
+    scope: '/budget-web-app/'
 }).then(()=>console.log('Service Worker Registered for scope:', sw.href)).catch((err)=>console.error('Service Worker Error:', err));
 function signIn() {
     (0, _auth.signInWithPopup)((0, _firebaseJs.auth), provider).then((result)=>{
@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const signInBttn = document.getElementById('googleLoginBtn');
     if (signInBttn) signInBttn.addEventListener("click", signIn);
     else console.error("Sign-in button not found.");
-});
+}); //Biometric auth
 
 },{"./firebase.js":"38sjH","firebase/auth":"79vzg","9f41ac59bb29f729":"oGVo0"}],"oGVo0":[function(require,module,exports,__globalThis) {
 module.exports = require("7d54aefc03d27bdb").getBundleURL('11vdL') + "service-worker.7754582a.js" + "?" + Date.now();

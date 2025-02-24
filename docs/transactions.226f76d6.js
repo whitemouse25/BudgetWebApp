@@ -755,29 +755,6 @@ function showToast(message, type = "success") {
     document.getElementById("toastContainer").appendChild(toast);
     setTimeout(()=>toast.remove(), 3000);
 }
-// Biometric Authentication (WebAuthn)
-biometricAuthBtn.addEventListener("click", async ()=>{
-    if (!window.PublicKeyCredential) {
-        alert("WebAuthn not supported in this browser.");
-        return;
-    }
-    try {
-        const challenge = new Uint8Array(32);
-        window.crypto.getRandomValues(challenge);
-        const publicKeyOptions = {
-            challenge: challenge,
-            allowCredentials: [],
-            userVerification: "required"
-        };
-        const credential = await navigator.credentials.get({
-            publicKey: publicKeyOptions
-        });
-        if (credential) alert("Biometric Authentication Successful!");
-        else alert("Authentication Failed!");
-    } catch (error) {
-        alert("Biometric Authentication Failed!");
-    }
-});
 
 },{"./firebase.js":"38sjH","firebase/firestore":"8A4BC","firebase/auth":"79vzg","@google/generative-ai":"gKJrW"}],"gKJrW":[function(require,module,exports,__globalThis) {
 /**

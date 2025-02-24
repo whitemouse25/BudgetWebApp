@@ -31,3 +31,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Sign-in button not found.");
     }
 });
+
+//Biometric auth
