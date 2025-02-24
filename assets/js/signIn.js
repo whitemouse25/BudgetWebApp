@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         signInBttn.addEventListener("click", signIn);
     } else {
         console.error("Sign-in button not found.");
-    }
+    }   
+    
 });
 
