@@ -30,5 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Sign-in button not found.");
     }   
+    
 });
 
