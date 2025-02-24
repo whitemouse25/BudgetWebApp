@@ -1,501 +1,292 @@
 /* Modern CSS Reset and Variables */
 :root {
-    /* Colors */
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --success: #22c55e;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-    
-    /* Surface Colors */
-    --surface-0: #ffffff;
-    --surface-50: #f8fafc;
-    --surface-100: #f1f5f9;
-    --surface-200: #e2e8f0;
-    --surface-300: #cbd5e1;
-    --surface-500: #64748b;
-    --surface-700: #334155;
-    --surface-900: #0f172a;
-    
-    /* Spacing */
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-6: 1.5rem;
-    --spacing-8: 2rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 1rem;
-  }
+  /* Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
   
-  /* Base Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  /* Surface Colors */
+  --surface-0: #ffffff;
+  --surface-50: #f8fafc;
+  --surface-100: #f1f5f9;
+  --surface-200: #e2e8f0;
+  --surface-300: #cbd5e1;
+  --surface-500: #64748b;
+  --surface-700: #334155;
+  --surface-900: #0f172a;
   
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--surface-50);
-    color: var(--surface-900);
-    line-height: 1.5;
-  }
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
   
-  /* Layout */
-  .app-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-4);
-  }
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   
-  /* Header */
-  .app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-6);
-  }
-  
-  /* Loading Screen */
-  .loading-screen {
-    position: fixed;
-    inset: 0;
-    background: var(--surface-0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-4);
-    z-index: 1000;
-  }
-  
-  .loader {
-    width: 48px;
-    height: 48px;
-    border: 3px solid var(--surface-200);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* Auth Screen */
-  .auth-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-4);
-  }
-  
-  .auth-container {
-    background: var(--surface-0);
-    padding: var(--spacing-8);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  /* Summary Cards */
-  .summary-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-6);
-  }
-  
-  .card {
-    background: var(--surface-0);
-    padding: var(--spacing-4);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .card h3 {
-    color: var(--surface-500);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .card p {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--surface-900);
-  }
-  .card #totalIncome{
-    color: var(--success);
-  }
-  .card #totalExpenses {
-    color: var(--danger);
-  }
-  /* Transactions Section */
-  .transactions-section {
-    background: var(--surface-0);
-    padding: var(--spacing-6);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-6);
-  }
-  
-  .transactions-list {
-    margin-top: 1rem;
-  }
-  
-  .transaction {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    background: var(--surface-50);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-  }
-  
-  .transaction:hover {
-    transform: translateX(4px);
-    background: var(--surface-100);
-  }
-  
-  .transaction-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    margin-right: 1rem;
-  }
-  
-  .transaction .description {
-    font-weight: 500;
-    color: var(--surface-900);
-  }
-  
-  .transaction .amount {
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  
-  .transaction.income .amount {
-    color: var(--success);
-  }
-  
-  .transaction.expense .amount {
-    color: var(--danger);
-  }
-  
-  .delete-btn {
-    background: none;
-    border: none;
-    color: var(--surface-500);
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    opacity: 0;
-    transition: all 0.2s ease;
-  }
-  
-  .transaction:hover .delete-btn {
-    opacity: 1;
-  }
-  
-  .delete-btn:hover {
-    color: var(--danger);
-    background: rgba(239, 68, 68, 0.1);
-  }
-  
-  /* Empty State */
-  .no-transactions {
-    text-align: center;
-    padding: 2rem;
-    color: var(--surface-500);
-    font-size: 0.9rem;
-  }
-  
-  /* Buttons */
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    transition: 0.3s ease, transform 0.2s ease;
-  }
-  
-  .btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-  }
-  
-  .btn-secondary {
-    background: var(--primary);
-    color: var(--surface-100);
-    border: 1px solid var(--surface-200);
-    padding: 10px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 550;
-    
-  }
-  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
 
-  main{
-    margin:0 auto;
-    display: block;
-    padding: 10px;
-    max-width: 1000px;
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--surface-50);
+  color: var(--surface-900);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Auth Screens (Sign In & Sign Up) */
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  background-color: var(--surface-50);
+}
+
+.auth-container {
+  background: var(--surface-0);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.auth-container h1 {
+  color: var(--surface-900);
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+}
+
+.auth-container p {
+  color: var(--surface-500);
+  margin-bottom: var(--spacing-6);
+}
+
+/* Auth Forms */
+.auth-form {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-4);
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 500;
+  color: var(--surface-700);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--surface-200);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: var(--surface-0);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  transition: all 0.2s ease;
+  margin-bottom: var(--spacing-3);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  width: 100%;
+  background: var(--surface-0);
+  color: var(--surface-900);
+  border: 1px solid var(--surface-200);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  transition: all 0.2s ease;
+  margin-bottom: var(--spacing-3);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-50);
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: var(--spacing-4) 0;
+  position: relative;
+  color: var(--surface-500);
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background-color: var(--surface-200);
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+/* Auth Footer */
+.auth-footer {
+  margin-top: var(--spacing-6);
+  text-align: center;
+  color: var(--surface-500);
+}
+
+.auth-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Biometric Setup */
+.biometric-setup {
+  margin: var(--spacing-4) 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  justify-content: center;
+  color: var(--surface-700);
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--surface-300);
+  cursor: pointer;
+}
+
+/* Icons */
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Error Messages */
+.error-message {
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-1);
+  text-align: left;
+}
+
+/* Success Messages */
+.success-message {
+  color: var(--success);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-1);
+  text-align: left;
+}
+
+/* Loading State */
+.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.loading::after {
+  content: "...";
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% { content: "."; }
+  33% { content: ".."; }
+  66% { content: "..."; }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-container {
+      padding: var(--spacing-4);
+      margin: var(--spacing-2);
   }
-  /* Forms */
-  .form-group {
-    margin-bottom: 1.5rem;
+
+  .auth-container h1 {
+      font-size: 1.5rem;
   }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--surface-700);
+
+  .btn-primary,
+  .btn-secondary {
+      padding: var(--spacing-2) var(--spacing-4);
   }
-  
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--surface-200);
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-  
-  .form-group input:focus,
-  .form-group select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-  }
-  
-  /* Modals */
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-4);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .modal.active {
-    opacity: 1;
-    visibility: visible;
-    display: block;
-  }
-  
-  .modal-content {
-    background: var(--surface-0);
-    padding: var(--spacing-6);
-    border-radius: var(--radius-lg);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  /* Toast Notifications */
-  .toast-container {
-    position: fixed;
-    bottom: var(--spacing-6);
-    right: var(--spacing-6);
-    z-index: 1000;
-  }
-  
-  .toast {
-    background: var(--surface-900);
-    color: white;
-    padding: var(--spacing-3) var(--spacing-6);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--spacing-2);
-    box-shadow: var(--shadow-md);
-    animation: slideIn 0.3s ease;
-  }
-  
-  .toast.error {
-    background: var(--danger);
-  }
-  
-  .toast.success {
-    background: var(--success);
-  }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Chatbot */
-  .chatbot-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    z-index: 1000;
-  }
-  
-  .chatbot-button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-  }
-  
-  .chatbot-button i {
-    font-size: 1.5rem;
-  }
-  
-  .chatbot-modal {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background: var(--surface-0);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    flex-direction: column;
-    z-index: 1001;
-    transition: all 0.3s ease;
-  }
-  
-  .chatbot-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    background: var(--primary);
-    color: white;
-    border-top-left-radius: var(--radius-md);
-    border-top-right-radius: var(--radius-md);
-  }
-  
-  .chatbot-messages {
-    padding: 1rem;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .chatbot-input {
-    display: flex;
-    padding: 0.5rem;
-    border-top: 1px solid var(--surface-200);
-  }
-  
-  .chatbot-input input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid var(--surface-200);
-    border-radius: 0.25rem;
-    margin-right: 0.5rem;
-  }
-  
-  .chatbot-input button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-  }
-  
-  /* QR Code */
-  
-  #generateQRCodeBtn {
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 1rem;
-  }
-  
-  #generateQRCodeBtn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-  }
-  
-  #qrcode {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--surface-200);
-    padding: 1px ;
-    border-radius: 0.5rem;
-    background-color: var(--surface-0);
-    width: 130px;
-    height: 130px;
-    box-shadow: var(--shadow-sm);
-    margin: 1rem auto;
-  }
-  #close-btn{
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 1rem;
-  }
-  
-  /* Utilities */
-  .hidden {
-    display: none !important;
-  }
-  
-  /* Dark Mode */
-  @media (prefers-color-scheme: dark) {
-    :root {
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
       --surface-0: #1e293b;
       --surface-50: #0f172a;
       --surface-100: #1e293b;
@@ -504,98 +295,127 @@
       --surface-500: #94a3b8;
       --surface-700: #cbd5e1;
       --surface-900: #f8fafc;
-    }
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .app-container {
-      padding: var(--spacing-2);
-    }
-    
-    .summary-cards {
-      grid-template-columns: 1fr;
-    }
-    
-    .transactions-section {
-      padding: var(--spacing-4);
-    }
-  
-    .transaction-details {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
-    }
-  
-    .delete-btn {
+
+  .auth-container {
+      background: var(--surface-100);
+  }
+
+  .form-group input {
+      background: var(--surface-0);
+      color: var(--surface-900);
+      border-color: var(--surface-300);
+  }
+
+  .btn-secondary {
+      background: var(--surface-200);
+      color: var(--surface-900);
+      border-color: var(--surface-300);
+  }
+
+  .btn-secondary:hover {
+      background: var(--surface-300);
+  }
+}
+
+/* Accessibility */
+:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
       opacity: 1;
-    }
-  
-    .transaction:hover {
-      transform: none;
-    }
-  
-    #qrcode {
-      width: 130px;
-      height: 130px;
-    }
+      transform: translateY(0);
   }
+}
 
-/*
-Ai Chatbot Full Screen Functionality
-*/
-/* Full-Screen Mode */
-.chatbot-modal.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none; /* Remove max-width restriction */
-    border-radius: 0; /* Remove rounded corners */
-    flex-direction: column; /* Ensure proper layout */
-    z-index: 2000; /* Ensure it stays on top */
-  }
+.auth-container {
+  animation: fadeIn 0.3s ease-out;
+}
 
-  header{
-    display:flex;
-    justify-content:space-between;
-    margin: 0 0 10px 0px;
-  }
-  
-  .chatbot-modal.fullscreen .chatbot-header {
-    justify-content: flex-end; /* Move close button to the right */
-  }
-  
-  .chatbot-modal.fullscreen .chatbot-messages {
-    flex: 1; /* Make messages section take up most of the space */
-    overflow-y: auto; /* Enable scrolling for messages */
-  }
-  
-  .chatbot-modal.fullscreen .chatbot-input {
-    border-top: 1px solid var(--surface-200); /* Add a border for separation */
-  }
-  #closeChatbot {
-    padding: 5px;
+/* Biometric Button Specific Styles */
+#biometricAuthBtn {
+  margin-top: var(--spacing-4);
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  transition: all 0.2s ease;
+}
 
-  }
+#biometricAuthBtn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
 
-  #biometricAuthBtn {
-    margin-top: 10px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    transition: 0.3s ease, transform 0.2s ease;
-    text-transform: capitalize;
-  }
-  #biometricAuthBtn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-  }
+#biometricAuthBtn:disabled {
+  background: var(--surface-300);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Google Button Specific Styles */
+#googleLoginBtn,
+#googleSignupBtn {
+  background: white;
+  color: var(--surface-900);
+  border: 1px solid var(--surface-200);
+}
+
+#googleLoginBtn:hover,
+#googleSignupBtn:hover {
+  background: var(--surface-50);
+}
+
+/* Form Validation Styles */
+.form-group input:invalid {
+  border-color: var(--danger);
+}
+
+.form-group input:invalid:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.validation-message {
+  font-size: 0.875rem;
+  margin-top: var(--spacing-1);
+}
+
+.validation-message.error {
+  color: var(--danger);
+}
+
+.validation-message.success {
+  color: var(--success);
+}
